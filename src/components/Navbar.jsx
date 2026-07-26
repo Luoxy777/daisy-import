@@ -33,7 +33,7 @@ export default function Navbar() {
             <nav className="fixed top-0 w-full bg-white shadow-sm z-50">
                 <div className="flex justify-between items-center px-4 md:px-8 h-16">
                     {/* KIRI */}
-                    <div className="flex items-center gap-2 w-[120px]">
+                    <div className="flex items-center gap-2 w-30">
                         {!isAdminPage && !isLoginPage && (
                             <button onClick={() => setShowMobileMenu(true)} className="p-2 hover:bg-gray-100 rounded-md">
                                 <Menu className="w-6 h-6 text-gray-800" />
@@ -50,7 +50,7 @@ export default function Navbar() {
                     </Link>
 
                     {/* KANAN */}
-                    <div className="flex items-center gap-2 justify-end min-w-[120px]">
+                    <div className="flex items-center gap-2 justify-end min-w-30">
                         {isAdminPage && session && (
                             <div className="relative">
                                 <button onClick={() => setShowUserMenu(!showUserMenu)} className="p-2 hover:bg-gray-100 rounded-md">
@@ -98,7 +98,7 @@ export default function Navbar() {
                                 <Link to="/cart" className="p-2 relative hover:bg-gray-100 rounded-md">
                                     <ShoppingBag className="w-5 h-5 text-gray-800" />
                                     {totalItems > 0 && (
-                                        <span className="absolute -top-1 -right-1 bg-black text-white text-[10px] min-w-[18px] h-[18px] flex items-center justify-center rounded-full px-1 font-bold">{totalItems}</span>
+                                        <span className="absolute -top-1 -right-1 bg-black text-white text-[10px] min-w-4.5 h-4.5 flex items-center justify-center rounded-full px-1 font-bold">{totalItems}</span>
                                     )}
                                 </Link>
                             </>

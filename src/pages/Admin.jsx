@@ -577,12 +577,12 @@ export default function Admin() {
                                                 placeholder="Contoh: Hitam"
                                                 className="w-full border border-gray-300 p-2 rounded-lg text-sm focus:ring-2 focus:ring-black outline-none" />
                                         </div>
-                                        <div className="sm:w-[180px]">
+                                        <div className="sm:w-45">
                                             <label className="block text-xs text-gray-600 mb-1">Kode Warna</label>
                                             <div className="flex items-center gap-2">
                                                 <input type="color" value={variant.colorHex}
                                                     onChange={(e) => updateVariant(variant.id, 'colorHex', e.target.value)}
-                                                    className="w-10 h-10 rounded cursor-pointer border p-0 flex-shrink-0" />
+                                                    className="w-10 h-10 rounded cursor-pointer border p-0 shrink-0" />
                                                 <input type="text" value={variant.colorHex}
                                                     onChange={(e) => updateVariant(variant.id, 'colorHex', e.target.value)}
                                                     className="flex-1 min-w-0 border border-gray-300 p-2 rounded-lg text-sm focus:ring-2 focus:ring-black outline-none font-mono" />
@@ -602,7 +602,7 @@ export default function Admin() {
                                                     <div key={size} className="flex items-center gap-3">
                                                         <button type="button"
                                                             onClick={() => toggleSizeForVariant(variant.id, size)}
-                                                            className={`px-3 py-1.5 border rounded text-xs font-medium min-w-[48px] transition-colors ${isActive ? 'bg-black text-white border-black' : 'bg-white text-gray-500 border-gray-300 hover:border-gray-400'}`}>
+                                                            className={`px-3 py-1.5 border rounded text-xs font-medium min-w-12 transition-colors ${isActive ? 'bg-black text-white border-black' : 'bg-white text-gray-500 border-gray-300 hover:border-gray-400'}`}>
                                                             {size}
                                                         </button>
                                                         {isActive && (
@@ -638,7 +638,7 @@ export default function Admin() {
                                         <label className="block text-xs text-gray-600 mb-2">Foto (Rasio 3:4) <span className="text-red-500">*</span></label>
                                         <div className="flex flex-wrap gap-3">
                                             {variant.images.map((blob, i) => (
-                                                <div key={i} className="relative w-24 aspect-[3/4] bg-gray-100 rounded-lg overflow-hidden border group">
+                                                <div key={i} className="relative w-24 aspect-3/4 bg-gray-100 rounded-lg overflow-hidden border group">
                                                     <img src={URL.createObjectURL(blob)} alt="" className="w-full h-full object-cover" />
                                                     <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 flex items-center justify-center">
                                                         <button type="button" onClick={() => removeVariantImage(variant.id, i)}
@@ -646,7 +646,7 @@ export default function Admin() {
                                                     </div>
                                                 </div>
                                             ))}
-                                            <label className="relative w-24 aspect-[3/4] border-2 border-dashed border-gray-300 rounded-lg flex flex-col items-center justify-center hover:bg-white cursor-pointer">
+                                            <label className="relative w-24 aspect-3/4 border-2 border-dashed border-gray-300 rounded-lg flex flex-col items-center justify-center hover:bg-white cursor-pointer">
                                                 <ImagePlus className="w-5 h-5 text-gray-400 mb-1" />
                                                 <span className="text-xs text-gray-500">Tambah</span>
                                                 <input type="file" accept="image/*" onChange={(e) => onFileChange(e, variant.id, false)} className="hidden" />
@@ -680,7 +680,7 @@ export default function Admin() {
                                     return (
                                         <div key={size} className="flex items-center gap-3">
                                             <button type="button" onClick={() => toggleGeneralSize(size)}
-                                                className={`px-3 py-1.5 border rounded text-xs font-medium min-w-[48px] ${isActive ? 'bg-black text-white border-black' : 'bg-white text-gray-500 border-gray-300 hover:border-gray-400'}`}>
+                                                className={`px-3 py-1.5 border rounded text-xs font-medium min-w-12 ${isActive ? 'bg-black text-white border-black' : 'bg-white text-gray-500 border-gray-300 hover:border-gray-400'}`}>
                                                 {size}
                                             </button>
                                             {isActive && (
@@ -715,7 +715,7 @@ export default function Admin() {
                             <label className="block text-sm font-medium text-gray-700 mb-2">Foto Produk <span className="text-red-500">*</span></label>
                             <div className="flex flex-wrap gap-3">
                                 {generalImages.map((blob, i) => (
-                                    <div key={i} className="relative w-28 aspect-[3/4] bg-gray-100 rounded-lg overflow-hidden border group">
+                                    <div key={i} className="relative w-28 aspect-3/4 bg-gray-100 rounded-lg overflow-hidden border group">
                                         <img src={URL.createObjectURL(blob)} alt="" className="w-full h-full object-cover" />
                                         <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 flex items-center justify-center">
                                             <button type="button" onClick={() => removeGeneralImage(i)}
@@ -723,7 +723,7 @@ export default function Admin() {
                                         </div>
                                     </div>
                                 ))}
-                                <label className="relative w-28 aspect-[3/4] border-2 border-dashed border-gray-300 rounded-lg flex flex-col items-center justify-center hover:bg-white cursor-pointer">
+                                <label className="relative w-28 aspect-3/4 border-2 border-dashed border-gray-300 rounded-lg flex flex-col items-center justify-center hover:bg-white cursor-pointer">
                                     <ImagePlus className="w-6 h-6 text-gray-400 mb-1" />
                                     <span className="text-xs text-gray-500">Tambah Foto</span>
                                     <input type="file" accept="image/*" onChange={(e) => onFileChange(e, null, true)} className="hidden" />

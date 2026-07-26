@@ -73,7 +73,7 @@ export default function Home() {
                         {/* Search Button */}
                         <button
                             onClick={() => setShowSearch(!showSearch)}
-                            className="p-2 hover:bg-gray-100 rounded-full flex-shrink-0"
+                            className="p-2 hover:bg-gray-100 rounded-full shrink-0"
                         >
                             <Search className="w-5 h-5 text-gray-600" />
                         </button>
@@ -127,7 +127,7 @@ export default function Home() {
                                     key={product.id}
                                     className="group cursor-pointer flex flex-col"
                                 >
-                                    <div className="relative w-full aspect-[3/4] overflow-hidden bg-gray-100 rounded-lg mb-3">
+                                    <div className="relative w-full aspect-3/4 overflow-hidden bg-gray-100 rounded-lg mb-3">
                                         <img
                                             src={product.image_url}
                                             alt={product.name}

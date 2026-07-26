@@ -9,7 +9,7 @@ export default function ProductCard({ product }) {
     return (
         <Link to={`/product/${product.id}`} className="group cursor-pointer flex flex-col gap-2">
             {/* Container Gambar 3:4 */}
-            <div className="relative w-full aspect-[3/4] overflow-hidden bg-gray-100 rounded-lg">
+            <div className="relative w-full aspect-3/4 overflow-hidden bg-gray-100 rounded-lg">
                 <img
                     src={product.image_url}
                     alt={product.name}

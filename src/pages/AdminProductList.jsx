@@ -77,7 +77,7 @@ export default function AdminProductList() {
 
             {/* Filters */}
             <div className="flex gap-3 mb-6 flex-wrap">
-                <div className="relative flex-1 min-w-[200px]">
+                <div className="relative flex-1 min-w-50">
                     <Search className="absolute left-3 top-2.5 w-4 h-4 text-gray-400" />
                     <input
                         type="text"
@@ -118,7 +118,7 @@ export default function AdminProductList() {
                                 <tr key={product.id} className="hover:bg-gray-50">
                                     <td className="px-4 py-3">
                                         <div className="flex items-center gap-3">
-                                            <div className="w-12 h-16 bg-gray-100 rounded overflow-hidden flex-shrink-0">
+                                            <div className="w-12 h-16 bg-gray-100 rounded overflow-hidden shrink-0">
                                                 <img src={product.image_url} alt="" className="w-full h-full object-cover" />
                                             </div>
                                             <div>

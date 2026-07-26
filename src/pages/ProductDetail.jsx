@@ -182,13 +182,13 @@ export default function ProductDetail() {
                 <div className="grid md:grid-cols-2 gap-8 md:gap-16">
                     {/* Product Images */}
                     <div className="space-y-4">
-                        <div className="aspect-[3/4] bg-gray-100 rounded-lg overflow-hidden">
+                        <div className="aspect-3/4 bg-gray-100 rounded-lg overflow-hidden">
                             <img src={selectedVariant?.image_urls?.[0] || product.image_url} alt={product.name} className="w-full h-full object-cover" />
                         </div>
                         {selectedVariant?.image_urls?.length > 1 && (
                             <div className="flex gap-2 overflow-x-auto">
                                 {selectedVariant.image_urls.map((url, idx) => (
-                                    <div key={idx} className="w-20 h-20 flex-shrink-0 bg-gray-100 rounded overflow-hidden">
+                                    <div key={idx} className="w-20 h-20 shrink-0 bg-gray-100 rounded overflow-hidden">
                                         <img src={url} alt="" className="w-full h-full object-cover" />
                                     </div>
                                 ))}
@@ -259,7 +259,7 @@ export default function ProductDetail() {
                                         return (
                                             <button key={s.size}
                                                 onClick={() => { setSelectedSize(s.size); setError(''); }}
-                                                className={`px-4 py-3 border rounded-md text-sm font-medium min-w-[60px] ${selectedSize === s.size ? 'bg-black text-white border-black' : available <= 0 ? 'bg-gray-100 text-gray-400 border-gray-200 cursor-not-allowed' : 'bg-white text-gray-600 border-gray-300 hover:border-black'}`}
+                                                className={`px-4 py-3 border rounded-md text-sm font-medium min-w-15 ${selectedSize === s.size ? 'bg-black text-white border-black' : available <= 0 ? 'bg-gray-100 text-gray-400 border-gray-200 cursor-not-allowed' : 'bg-white text-gray-600 border-gray-300 hover:border-black'}`}
                                                 disabled={available <= 0}>
                                                 <div>{s.size}</div>
                                                 <div className="text-xs mt-0.5 opacity-70">{dbStock <= 0 ? 'Habis' : available <= 0 ? 'Penuh' : `${available}`}</div>
@@ -293,7 +293,7 @@ export default function ProductDetail() {
 
                         {error && (
                             <div className="flex items-center gap-2 p-3 bg-red-50 border border-red-200 rounded-lg">
-                                <AlertCircle className="w-4 h-4 text-red-500 flex-shrink-0" />
+                                <AlertCircle className="w-4 h-4 text-red-500 shrink-0" />
                                 <p className="text-sm text-red-600">{error}</p>
                             </div>
                         )}

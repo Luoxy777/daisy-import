@@ -203,7 +203,7 @@ export default function Cart() {
                     {stockErrors.length > 0 && (
                         <div className="bg-red-50 border border-red-200 rounded-lg p-4">
                             <div className="flex items-start gap-3">
-                                <AlertCircle className="w-5 h-5 text-red-500 flex-shrink-0 mt-0.5" />
+                                <AlertCircle className="w-5 h-5 text-red-500 shrink-0 mt-0.5" />
                                 <div>
                                     <h3 className="font-medium text-red-800 mb-2">Stok Tidak Mencukupi!</h3>
                                     <ul className="space-y-2">
@@ -269,7 +269,7 @@ export default function Cart() {
                             const subtotal = itemPrice * item.quantity;
                             return (
                                 <div key={`${item.productId}-${item.variantId}-${item.size}`} className="bg-white rounded-lg p-4 flex gap-4">
-                                    <div className="w-24 h-32 flex-shrink-0 bg-gray-100 rounded overflow-hidden">
+                                    <div className="w-24 h-32 shrink-0 bg-gray-100 rounded overflow-hidden">
                                         <img src={item.image} alt={item.name} className="w-full h-full object-cover" />
                                     </div>
                                     <div className="flex-1 min-w-0">
@@ -291,7 +291,7 @@ export default function Cart() {
                                                 </div>
                                             </div>
                                             <button onClick={() => removeFromCart(item.productId, item.variantId, item.size, item.cartItemId)}
-                                                className="text-gray-400 hover:text-red-500 flex-shrink-0 ml-2">
+                                                className="text-gray-400 hover:text-red-500 shrink-0 ml-2">
                                                 <Trash2 className="w-4 h-4" />
                                             </button>
                                         </div>
