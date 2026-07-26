@@ -4,36 +4,38 @@ import { useNavigate } from 'react-router-dom';
 import { supabase } from '../supabaseClient';
 
 export default function ProtectedRoute({ children }) {
-    const [session, setSession] = useState(null);
+    const [isAdmin, setIsAdmin] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
     const navigate = useNavigate();
 
     useEffect(() => {
-        // Cek session saat ini
-        supabase.auth.getSession().then(({ data: { session } }) => {
-            setSession(session);
-            setIsLoading(false);
+        const checkAdmin = async () => {
+            const { data: { session } } = await supabase.auth.getSession();
 
-            if (!session) {
-                // Redirect ke login dengan return URL
-                navigate('/login', {
-                    state: { from: window.location.pathname },
-                    replace: true
-                });
-            }
-        });
-
-        // Listen perubahan auth state
-        const {
-            data: { subscription },
-        } = supabase.auth.onAuthStateChange((_event, session) => {
-            setSession(session);
             if (!session) {
                 navigate('/login', { replace: true });
+                return;
             }
-        });
 
-        return () => subscription.unsubscribe();
+            // 🔥 CEK APAKAH USER ADALAH ADMIN
+            const { data: adminData } = await supabase
+                .from('admins')
+                .select('*')
+                .eq('user_id', session.user.id)
+                .single();
+
+            if (!adminData) {
+                // Bukan admin! Redirect ke home
+                alert('Akses ditolak! Hanya admin yang bisa mengakses halaman ini.');
+                navigate('/', { replace: true });
+                return;
+            }
+
+            setIsAdmin(true);
+            setIsLoading(false);
+        };
+
+        checkAdmin();
     }, [navigate]);
 
     if (isLoading) {
@@ -41,15 +43,13 @@ export default function ProtectedRoute({ children }) {
             <div className="min-h-screen flex items-center justify-center bg-gray-50">
                 <div className="text-center">
                     <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-gray-900 mx-auto"></div>
-                    <p className="mt-4 text-gray-600">Memeriksa sesi...</p>
+                    <p className="mt-4 text-gray-600">Memeriksa akses...</p>
                 </div>
             </div>
         );
     }
 
-    if (!session) {
-        return null; // Akan redirect di useEffect
-    }
+    if (!isAdmin) return null;
 
     return children;
-}   
+}

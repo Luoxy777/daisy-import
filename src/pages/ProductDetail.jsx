@@ -230,22 +230,24 @@ export default function ProductDetail() {
                         )}
 
                         {/* Color Selection */}
-                        <div>
-                            <h3 className="text-sm font-medium text-gray-900 mb-3">Warna: {selectedVariant?.color_name || 'Pilih'}</h3>
-                            <div className="flex gap-3">
-                                {product.variants?.map((variant) => {
-                                    const totalStock = variant.sizes?.reduce((sum, s) => sum + (s.stock || 0), 0) || 0;
-                                    return (
-                                        <button key={variant.id}
-                                            onClick={() => { setSelectedVariant(variant); setSelectedSize(null); setError(''); }}
-                                            className={`w-10 h-10 rounded-full border-2 transition-all ${selectedVariant?.id === variant.id ? 'border-black scale-110' : 'border-gray-300 hover:border-gray-500'} ${totalStock <= 0 ? 'opacity-30 cursor-not-allowed' : ''}`}
-                                            style={{ backgroundColor: variant.color_hex }}
-                                            title={`${variant.color_name}${totalStock <= 0 ? ' (Habis)' : ''}`}
-                                            disabled={totalStock <= 0} />
-                                    );
-                                })}
+                        {product.variants && product.variants.some(v => v.color_name) && (
+                            <div>
+                                <h3 className="text-sm font-medium text-gray-900 mb-3">Warna: {selectedVariant?.color_name || 'Pilih'}</h3>
+                                <div className="flex gap-3">
+                                    {product.variants?.map((variant) => {
+                                        const totalStock = variant.sizes?.reduce((sum, s) => sum + (s.stock || 0), 0) || 0;
+                                        return (
+                                            <button key={variant.id}
+                                                onClick={() => { setSelectedVariant(variant); setSelectedSize(null); setError(''); }}
+                                                className={`w-10 h-10 rounded-full border-2 transition-all ${selectedVariant?.id === variant.id ? 'border-black scale-110' : 'border-gray-300 hover:border-gray-500'} ${totalStock <= 0 ? 'opacity-30 cursor-not-allowed' : ''}`}
+                                                style={{ backgroundColor: variant.color_hex }}
+                                                title={`${variant.color_name}${totalStock <= 0 ? ' (Habis)' : ''}`}
+                                                disabled={totalStock <= 0} />
+                                        );
+                                    })}
+                                </div>
                             </div>
-                        </div>
+                        )}
 
                         {/* Size Selection */}
                         <div>

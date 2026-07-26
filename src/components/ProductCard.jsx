@@ -55,10 +55,10 @@ export default function ProductCard({ product }) {
                     )}
                 </div>
 
-                {/* Pilihan Warna */}
-                {product.variants && (
+                {/* Pilihan Warna - hanya tampil kalau ada */}
+                {product.variants && product.variants.some(v => v.color_hex) && (
                     <div className="flex gap-1.5 mt-1">
-                        {product.variants.slice(0, 5).map((variant, idx) => (
+                        {product.variants.filter(v => v.color_hex).slice(0, 5).map((variant, idx) => (
                             <div
                                 key={idx}
                                 className="w-4 h-4 rounded-full border border-gray-300"
@@ -66,9 +66,6 @@ export default function ProductCard({ product }) {
                                 title={variant.color_name}
                             />
                         ))}
-                        {product.variants.length > 5 && (
-                            <span className="text-xs text-gray-400">+{product.variants.length - 5}</span>
-                        )}
                     </div>
                 )}
             </div>

@@ -162,19 +162,27 @@ export default function Home() {
                                             </p>
                                         )}
                                     </div>
-                                    <div className="flex gap-1 mt-1">
-                                        {product.variants?.slice(0, 5).map((v, i) => (
-                                            <div
-                                                key={i}
-                                                className="w-3 h-3 rounded-full border border-gray-300"
-                                                style={{ backgroundColor: v.color_hex }}
-                                                title={v.color_name}
-                                            />
-                                        ))}
-                                        {product.variants?.length > 5 && (
-                                            <span className="text-xs text-gray-400">+{product.variants.length - 5}</span>
-                                        )}
-                                    </div>
+                                    {/* Color Dots - hanya tampil kalau ada warna */}
+                                    {product.variants?.some(v => v.color_hex && v.color_hex !== '') && (
+                                        <div className="flex gap-1 mt-1">
+                                            {product.variants
+                                                .filter(v => v.color_hex && v.color_hex !== '')
+                                                .slice(0, 5)
+                                                .map((v, i) => (
+                                                    <div
+                                                        key={i}
+                                                        className="w-3 h-3 rounded-full border border-gray-300"
+                                                        style={{ backgroundColor: v.color_hex }}
+                                                        title={v.color_name}
+                                                    />
+                                                ))}
+                                            {product.variants.filter(v => v.color_hex && v.color_hex !== '').length > 5 && (
+                                                <span className="text-xs text-gray-400">
+                                                    +{product.variants.filter(v => v.color_hex && v.color_hex !== '').length - 5}
+                                                </span>
+                                            )}
+                                        </div>
+                                    )}
                                 </Link>
                             ))}
                         </div>

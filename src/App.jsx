@@ -8,10 +8,10 @@ import AdminEditProduct from './pages/AdminEditProduct';
 import Home from './pages/Home';
 import ProductDetail from './pages/ProductDetail';
 import Cart from './pages/Cart';
-import ProtectedRoute from './components/ProtectedRoute';
 import Profile from './pages/Profile';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import TermsConditions from './pages/TermsConditions';
+import AdminRoute from './components/AdminRoute';
 
 function App() {
   return (
@@ -25,23 +25,14 @@ function App() {
           <Route path="/product/:id" element={<ProductDetail />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/profile" element={<Profile />} />
-
-          <Route path="/terms" element={<TermsConditions />} />
           <Route path="/privacy" element={<PrivacyPolicy />} />
+          <Route path="/terms" element={<TermsConditions />} />
 
-          {/* Protected Routes (Admin) */}
-          <Route path="/admin" element={
-            <ProtectedRoute><Navigate to="/admin/products" replace /></ProtectedRoute>
-          } />
-          <Route path="/admin/products" element={
-            <ProtectedRoute><AdminProductList /></ProtectedRoute>
-          } />
-          <Route path="/admin/add" element={
-            <ProtectedRoute><Admin /></ProtectedRoute>
-          } />
-          <Route path="/admin/edit/:id" element={
-            <ProtectedRoute><AdminEditProduct /></ProtectedRoute>
-          } />
+          {/* Admin Routes - Hanya admin! */}
+          <Route path="/admin" element={<AdminRoute><Navigate to="/admin/products" replace /></AdminRoute>} />
+          <Route path="/admin/products" element={<AdminRoute><AdminProductList /></AdminRoute>} />
+          <Route path="/admin/add" element={<AdminRoute><Admin /></AdminRoute>} />
+          <Route path="/admin/edit/:id" element={<AdminRoute><AdminEditProduct /></AdminRoute>} />
         </Routes>
       </div>
     </div>

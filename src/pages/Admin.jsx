@@ -409,7 +409,7 @@ export default function Admin() {
 
                 const { error: variantsError } = await supabase
                     .from('product_variants')
-                    .insert([{ product_id: productData.id, color_name: 'Default', color_hex: '#000000', image_urls: uploadedUrls, sizes: sizesData }]);
+                    .insert([{ product_id: productData.id, color_name: '', color_hex: '', image_urls: uploadedUrls, sizes: sizesData }]);
                 if (variantsError) throw variantsError;
             }
 
