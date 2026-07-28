@@ -161,7 +161,7 @@ export default function AdminProductList() {
                                                 <img src={product.image_url} alt="" className="w-full h-full object-cover" />
                                             </div>
                                             <div className="min-w-0">
-                                                <p className="font-medium text-sm truncate max-w-[150px] md:max-w-[200px]">{product.name}</p>
+                                                <p className="font-medium text-sm truncate max-w-37.5 md:max-w-50">{product.name}</p>
                                                 <p className="text-xs text-gray-400 md:hidden">{product.category?.name}</p>
                                                 <p className="text-xs text-gray-400 hidden md:block">{product.id.slice(0, 8)}...</p>
                                             </div>
